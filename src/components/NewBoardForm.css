@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.submit-btn {
+.submit-btn, .submit-btn-invalid {
     background-color: #fff;
     border: 2px solid #000;
     padding: .5em;
@@ -23,4 +23,9 @@
 
 .submit-btn:hover {
     background-color: lightgray;
+}
+
+.invalid-form-input {
+    border: red solid 1px;
+    box-shadow: 0 0 7px red;
 }
