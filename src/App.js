@@ -24,21 +24,25 @@ const App = () => {
   };
   
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div className="page__container">
+      <div className="content__container">
+        <h1>Inspiration Board</h1>
+        <section className="boards__container">
+          
+          <section className="BoardList__container">
+            <BoardList />
+          </section>
 
-      <section className="newBoardForm__container">
-        <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit}/>
-      </section>
+          <section>
+            <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit}/>
+          </section>
 
-      <section className="BoardList__container">
-        <BoardList />
-      </section>
+          <section className="NewCardForm__container">
+            <NewCardForm boardId={1} createNewBoard={backend.createNewBoard}/>
 
-      <section className="NewCardForm__container">
-        <NewCardForm boardId={boardId} createNewBoard={backend.createNewBoard}/>
-
-      </section>
+          </section>
+        </section>
+      </div>
     </div>
   );
 }
