@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Board from "./Board";
+import { getAllBoards } from "../APICalls"; // Import the function you need
 import "./BoardList.css";
 
 const BoardListProps = (props) => {
@@ -34,16 +35,19 @@ const BoardList = () => {
   const [allBoardData, setAllBoardData] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
 
-  // Simulation to test
-  const sampleBoardData = [
-    { id: 1, title: "Portfolio examples", owner: "Barbara" },
-    { id: 2, title: "Leetcode for beginners", owner: "Elizabeth" },
-    { id: 3, title: "Rock your interview", owner: "Josh" },
-  ];
-
   const handleBoardClick = (title, owner, id) => {
     setSelectedBoard({ title, owner, id });
   };
+
+  useEffect(() => {
+    getAllBoards()
+      .then((boards) => {
+        setAllBoardData(boards);
+      })
+      .catch((error) => {
+        console.error("Error fetching boards:", error);
+      });
+  }, []);
 
   return (
     <div>
@@ -53,7 +57,7 @@ const BoardList = () => {
           <h2>Board List</h2>
           <section className="boards__cointainer">
             <BoardListProps
-              boardData={sampleBoardData} // Replace with data from inputs
+              boardData={allBoardData}
               handleBoardClick={handleBoardClick}
             />
           </section>
