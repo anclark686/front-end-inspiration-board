@@ -21,12 +21,12 @@ export const getAllBoards = () => {
 /**
  * getSelectedBoard takes one argument, an int representing a board id.
  * Returns a board
- * @param {int} id must be an integer
+ * @param {int} board_id must be an integer
  * @returns {Promise<Board>} Promise object represents a Board object
  */
-export const getSelectedBoard = (id) => {
+export const getSelectedBoard = (board_id) => {
     return axios
-    .get(`${kBoardBaseUrl}/${id}`)
+    .get(`${kBoardBaseUrl}/${board_id}`)
     .then(response => {
         const selectedBoard = response.data;
         return selectedBoard;
@@ -71,12 +71,12 @@ export const createNewCard = (data) => {
 /**
  * getBoardCards takes one argument, an int representing a board id
  * Returns an array of cards associated with that board_id
- * @param {int} id must be an integer
+ * @param {int} board_id must be an integer
  * @returns {Promise<Card[]>} Promise object represents an array of Card objects
  */
-export const getBoardCards = (id) => {
+export const getBoardCards = (board_id) => {
     return axios
-    .get(`${kBoardBaseUrl}/${id}/cards`)
+    .get(`${kBoardBaseUrl}/${board_id}/cards`)
     .then(response => {
         const allCards = response.data
         console.log(allCards)
@@ -92,22 +92,22 @@ const kCardBaseUrl = 'https://inspiration-board-backend-t6x0.onrender.com/cards'
 /**
  * deleteCard takes one argument, an int representing a card id.
  * Does not return anything.
- * @param {int} id must be an integer
+ * @param {int} card_id must be an integer
  */
-export const deleteCard = (id) => {
+export const deleteCard = (card_id) => {
     axios
-    .delete(`${kCardBaseUrl}/${id}`)
+    .delete(`${kCardBaseUrl}/${card_id}`)
     }
 
 /**
- * addCardLike takes one argument, an int representing a card id.
+ * addLike takes one argument, an int representing a card id.
  * Returns the updated card
- * @param {int} id must be an integer
+ * @param {int} card_id must be an integer
  * @returns {Promise<Card>} Promise object represents a Card object
  */
-export const addCardLike = (id) => {
+export const addLike = (card_id) => {
     return axios
-    .patch(`${kCardBaseUrl}/${id}/add_like`)
+    .patch(`${kCardBaseUrl}/${card_id}/add_like`)
     .then(response => {
         const updatedCard = response.data
         return updatedCard
