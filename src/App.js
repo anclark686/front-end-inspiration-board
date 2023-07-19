@@ -27,7 +27,7 @@ const App = () => {
     <div className="page__container">
       <div className="content__container">
         <h1>Inspiration Board</h1>
-        <section class="boards__container">
+        <section className="boards__container">
           
           <section className="BoardList__container">
             <BoardList />
