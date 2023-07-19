@@ -78,9 +78,8 @@ export const getBoardCards = (board_id) => {
     return axios
     .get(`${kBoardBaseUrl}/${board_id}/cards`)
     .then(response => {
-        const allCards = response.data
-        console.log(allCards)
-        return allCards
+        const allCards = response.data;
+        return allCards;
     });
 };
 
@@ -109,7 +108,7 @@ export const addLike = (card_id) => {
     return axios
     .patch(`${kCardBaseUrl}/${card_id}/add_like`)
     .then(response => {
-        const updatedCard = response.data
-        return updatedCard
+        const updatedCard = response.data;
+        return updatedCard;
     })
 }
