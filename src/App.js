@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as backend from './APICalls.js';
 import BoardList from "./components/BoardList";
-import * as backend from "./APICalls.js";
-import NewCardForm from "./components/NewCardForm";
+import NewCardForm from './components/NewCardForm';
+import NewBoardForm from './components/NewBoardForm';
 
 const App = () => {
+  const [boardData, setBoardData] = useState([]);
   const [selectedBoardId, setSelectedBoardId] = useState(null);
+
+  useEffect(() => {
+    backend.getAllBoards()
+      .then(boards => {
+        setBoardData(boards);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleNewBoardSubmit = (data) => {
+    backend.createNewBoard(data)
+      .then(result => {
+        setBoardData(prevBoardData => [result, ...prevBoardData]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const handleBoardSelect = (boardId) => {
     setSelectedBoardId(boardId);
@@ -13,8 +35,13 @@ const App = () => {
   return (
     <div className="App">
       <h1>Hello World</h1>
+
+      <section className="newBoardForm__container">
+        <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
+      </section>
+
       <section className="BoardList__container">
-        <BoardList onBoardSelect={handleBoardSelect} />
+        <BoardList boardData={boardData} onBoardSelect={handleBoardSelect} />
       </section>
 
       <section className="NewCardForm__container">

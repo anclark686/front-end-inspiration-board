@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Board from "./Board";
-import { getAllBoards } from "../APICalls";
 import "./BoardList.css";
 
-const BoardListProps = (props) => {
+const BoardListProps = ({ boardData, handleBoardClick }) => {
   return (
     <ul>
-      {props.boardData.map((board) => (
+      {boardData.map((board) => (
         <Board
           title={board.title}
           owner={board.owner}
           key={board.id}
           id={board.id}
-          handleBoardClick={props.handleBoardClick}
+          handleBoardClick={handleBoardClick}
         />
       ))}
     </ul>
@@ -31,25 +30,13 @@ BoardListProps.propTypes = {
   handleBoardClick: PropTypes.func.isRequired,
 };
 
-const BoardList = ({ onBoardSelect }) => {
-  const [allBoardData, setAllBoardData] = useState([]);
+const BoardList = ({ boardData, onBoardSelect }) => {
   const [selectedBoard, setSelectedBoard] = useState(null);
-
-  useEffect(() => {
-    getAllBoards()
-      .then((boards) => {
-        setAllBoardData(boards);
-      })
-      .catch((error) => {
-        console.error("Error fetching boards:", error);
-      });
-  }, []);
 
   const handleBoardClick = (title, owner, id) => {
     setSelectedBoard({ title, owner, id });
     onBoardSelect(id);
   };
-
 
   return (
     <div>
@@ -59,7 +46,7 @@ const BoardList = ({ onBoardSelect }) => {
           <h2>Board List</h2>
           <section className="boards__cointainer">
             <BoardListProps
-              boardData={allBoardData}
+              boardData={boardData}
               handleBoardClick={handleBoardClick}
             />
           </section>
@@ -79,6 +66,17 @@ const BoardList = ({ onBoardSelect }) => {
       </section>
     </div>
   );
+};
+
+BoardList.propTypes = {
+  boardData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      owner: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ),
+  onBoardSelect: PropTypes.func.isRequired,
 };
 
 export default BoardList;
