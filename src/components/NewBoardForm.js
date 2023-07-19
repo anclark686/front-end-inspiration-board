@@ -35,38 +35,37 @@ const NewBoardForm = ({handleNewBoardSubmit}) => {
 
   if (showForm) {
     return (
-      <div className="NewBoardForm">
-      <h1>Create a New Board</h1>
-      <form className="new-board-form" onSubmit={handleFormSubmit}>
-        <li>
-          <label htmlFor="title">Title: </label>
+      <div className="new-board-form__container">
+        <h2>Create a New Board</h2>
+        <form className="new-board-form__form" onSubmit={handleFormSubmit}>
+            <label htmlFor="title">Title: </label>
+            <input 
+              type="text" 
+              name="title" 
+              value={formData.title} 
+              onChange={handleFormChange} 
+            />
+            <label htmlFor="owner">Owner: </label>
+            <input 
+              type="text" 
+              name="owner" 
+              value={formData.owner} 
+              onChange={handleFormChange} 
+            />
+          <p id="preview">Preview: {formData.title} - {formData.owner}</p>
           <input 
-            type="text" 
-            name="title" 
-            value={formData.title} 
-            onChange={handleFormChange} 
+            type="submit" 
+            className="submit-btn" 
           />
-        </li>
-        <li>
-          <label htmlFor="owner">Owner: </label>
-          <input 
-            type="text" 
-            name="owner" 
-            value={formData.owner} 
-            onChange={handleFormChange} 
-          />
-        </li>
-        <p id="preview">Preview: {formData.title} - {formData.owner}</p>
-        <input type="submit" className="submit-btn" />
-      </form>
-      <button onClick={handleFormVisibility}>Hide New Board Form</button>
-    </div>
+        </form>
+        <button className="submit-btn" onClick={handleFormVisibility}>Hide New Board Form</button>
+      </div>
     )
   } else {
     return (
-      <div className="NewBoardForm">
-        <h1>Create a New Board</h1>
-        <button onClick={handleFormVisibility}>Show New Board Form</button>
+      <div className="new-board-form__container">
+        <h2>Create a New Board</h2>
+        <span className="submit-btn" onClick={handleFormVisibility}>Show New Board Form</span>
       </div>
     );
   };

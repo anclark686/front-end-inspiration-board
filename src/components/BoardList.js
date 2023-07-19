@@ -47,7 +47,6 @@ const BoardList = () => {
 
   return (
     <div>
-      <h1> Inspiration Board </h1>
       <section className="board__container">
         <section className="boardList__container">
           <h2>Board List</h2>
@@ -59,7 +58,7 @@ const BoardList = () => {
           </section>
         </section>
         <section className="selectBoard__container">
-          <h2> Select a Board from the Board List </h2>
+          <h2> Selected Board</h2>
           <section className="select__board">
             {!selectedBoard ? (
               <span></span>
