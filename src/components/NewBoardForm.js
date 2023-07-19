@@ -11,8 +11,13 @@ const kInitialFormData = {
 
 const NewBoardForm = ({handleNewBoardSubmit}) => {
   const [formData, setFormData] = useState(kInitialFormData);
+  const [showForm, setShowForm] = useState(true)
 
-  const handleChange = (event) => {
+  const handleFormVisibility = (event) => {
+    setShowForm(!showForm)
+  }
+
+  const handleFormChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
     setFormData(prev => ({
@@ -28,8 +33,9 @@ const NewBoardForm = ({handleNewBoardSubmit}) => {
     setFormData(kInitialFormData);
   };
 
-  return (
-    <div className="NewBoardForm">
+  if (showForm) {
+    return (
+      <div className="NewBoardForm">
       <h1>Create a New Board</h1>
       <form className="new-board-form" onSubmit={handleFormSubmit}>
         <li>
@@ -38,7 +44,7 @@ const NewBoardForm = ({handleNewBoardSubmit}) => {
             type="text" 
             name="title" 
             value={formData.title} 
-            onChange={handleChange} 
+            onChange={handleFormChange} 
           />
         </li>
         <li>
@@ -47,14 +53,24 @@ const NewBoardForm = ({handleNewBoardSubmit}) => {
             type="text" 
             name="owner" 
             value={formData.owner} 
-            onChange={handleChange} 
+            onChange={handleFormChange} 
           />
         </li>
         <p id="preview">Preview: {formData.title} - {formData.owner}</p>
         <input type="submit" className="submit-btn" />
       </form>
+      <button onClick={handleFormVisibility}>Hide New Board Form</button>
     </div>
-  );
+    )
+  } else {
+    return (
+      <div className="NewBoardForm">
+        <h1>Create a New Board</h1>
+        <button onClick={handleFormVisibility}>Show New Board Form</button>
+      </div>
+    );
+  };
 }
+    
 
 export default NewBoardForm;
