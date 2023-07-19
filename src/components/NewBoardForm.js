@@ -70,6 +70,10 @@ const NewBoardForm = ({handleNewBoardSubmit}) => {
       </div>
     );
   };
+};
+
+NewBoardForm.propTypes = {
+  handleNewBoardSubmit: PropTypes.func.isRequired,
 }
     
 
