@@ -35,6 +35,7 @@ const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
     if (delboard) {
       handleBoardDelete(selectedBoard.id);
       setSelectedBoard(null);
+      onBoardSelect(null);
     }
   };
 

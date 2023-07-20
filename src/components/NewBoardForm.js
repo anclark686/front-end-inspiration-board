@@ -34,6 +34,7 @@ const NewBoardForm = ({ handleNewBoardSubmit }) => {
     handleNewBoardSubmit(formData);
     // clear input field
     setFormData(kInitialFormData);
+    setInvalidForm({ title: true, owner: true });
   };
 
   if (showForm) {
