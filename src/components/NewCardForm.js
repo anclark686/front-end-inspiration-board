@@ -32,7 +32,7 @@ const NewCardForm = ({ boardId, createNewBoard }) => {
     <section>
       <h2>Create a New Card</h2>
 
-      <form className="new-card-form" onSubmit={handleSubmit}>
+      <form className="new-card__form" onSubmit={handleSubmit}>
         <label htmlFor="message">Message: </label>
         <input type="text" className={invalidForm ? "invalid-form-input" : "form-input"} name="message" value={message} onChange={generateMessage} />
         <p id="preview">Preview: {message}</p>

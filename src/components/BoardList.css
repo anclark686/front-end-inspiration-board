@@ -1,12 +1,12 @@
-.board__container {
-    display: flex;
-    flex-direction: row;
+.mainBoard__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.boards__cointainer {
-    max-height: 9rem;
-    min-height: 9rem;
-    overflow: scroll;
-    margin-right: 2rem;
-    border: black solid 1px;
+.board__container {
+  max-height: 9rem;
+  min-height: 9rem;
+  overflow: scroll;
+  margin-right: 2rem;
+  border: 2px solid #000;
 }

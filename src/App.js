@@ -43,7 +43,7 @@ const App = () => {
       <div className="content__container">
         <h1>Inspiration Board</h1>
         <section className="boards__container">
-          <section className="BoardList__container">
+          <section className="boardList__container">
             <BoardList
               boardData={boardData}
               onBoardSelect={handleBoardSelect}
@@ -54,14 +54,21 @@ const App = () => {
             <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
           </section>
         </section>
-        <section className="cards_container">
-          <section className="NewCardForm__container">
-            <NewCardForm
-              boardId={selectedBoardId}
-              createNewBoard={backend.createNewBoard}
-            />
+
+        {selectedBoardId ?
+          <section className="cards__container">
+            <section className="cardList__container">
+
+            </section>
+
+            <section className="newCardForm__container">
+              <NewCardForm
+                boardId={selectedBoardId}
+                createNewBoard={backend.createNewBoard}
+              />
+            </section>
           </section>
-        </section>
+          : null}
       </div>
     </div>
   );
