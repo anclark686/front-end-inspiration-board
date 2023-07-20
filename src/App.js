@@ -21,7 +21,7 @@ const App = () => {
         setBoardData(boards);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error in getAllBoards()", err);
       });
   }, []);
   
@@ -32,7 +32,7 @@ const App = () => {
       setBoardData((prevBoardData) => [result, ...prevBoardData]);
     })
     .catch((err) => {
-      console.log(err);
+      console.log("Error in handleNewBoardSubmit", err);
     });
   };
   
@@ -44,7 +44,7 @@ const App = () => {
       setCardEntries(result);
     })
     .catch((err) => {
-      console.log(err)
+      console.log("Error in handleBoardSelect", err)
     })
   };
   
@@ -55,7 +55,7 @@ const App = () => {
     .then(setBoardData((prev) => prev.filter((board) => board.board_id !== boardId))
     )
     .catch((err) => {
-      console.log(err)
+      console.log("Error in handleBoardDelete", err)
     })
     
   };
@@ -73,7 +73,7 @@ const App = () => {
       }))
     })
     .catch((err) => {
-      console.log(err)
+      console.log("Error in handleAddLike", err)
     })
   };
 
@@ -83,7 +83,7 @@ const App = () => {
     .then(setCardEntries((prev) => prev.filter((card) => card.card_id !== cardId))
     )
     .catch((err) => {
-      console.log(err)
+      console.log("Error in handleDelete Card", err)
     });
   };
 
