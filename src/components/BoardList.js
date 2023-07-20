@@ -30,7 +30,7 @@ BoardListProps.propTypes = {
   handleBoardClick: PropTypes.func.isRequired,
 };
 
-const BoardList = ({ boardData, onBoardSelect }) => {
+const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
   const [selectedBoard, setSelectedBoard] = useState(null);
 
   const handleBoardClick = (title, owner, id) => {
@@ -38,9 +38,19 @@ const BoardList = ({ boardData, onBoardSelect }) => {
     onBoardSelect(id);
   };
 
+  const handleDeleteClick = () => {
+    console.log(selectedBoard.id);
+    const delboard = window.confirm(
+      `Are you sure you want to delete board "${selectedBoard.title}"?`
+    );
+    if (delboard) {
+      handleBoardDelete(selectedBoard.id);
+      setSelectedBoard(null);
+    }
+  };
+
   return (
     <div>
-
       <h1>Inspiration Board</h1>
 
       <section className="board__container">
@@ -54,16 +64,22 @@ const BoardList = ({ boardData, onBoardSelect }) => {
           </section>
         </section>
         <section className="selectBoard__container">
-
           <h2> Selected Board</h2>
 
-          <section className="select__board">
+          <section className="board__extras">
             {!selectedBoard ? (
               <span></span>
             ) : (
-              <span>
-                {selectedBoard.title} - made by {selectedBoard.owner}
-              </span>
+              <section className="board__actions">
+                <section className="select__board">
+                  {selectedBoard.title} - made by {selectedBoard.owner}
+                </section>
+                <section className="delete-btn__container">
+                  <button className="delete-btn" onClick={handleDeleteClick}>
+                    Delete Board
+                  </button>
+                </section>
+              </section>
             )}
           </section>
         </section>
@@ -81,6 +97,7 @@ BoardList.propTypes = {
     })
   ),
   onBoardSelect: PropTypes.func.isRequired,
+  handleBoardDelete: PropTypes.func.isRequired,
 };
 
 export default BoardList;

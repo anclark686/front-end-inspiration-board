@@ -32,6 +32,11 @@ const App = () => {
     setSelectedBoardId(boardId);
   };
 
+  const handleBoardDelete = (boardId) => {
+    backend.deleteBoard(boardId);
+    setBoardData((prev) => prev.filter((board) => board.board_id !== boardId));
+  };
+
   return (
     <div className="page__container">
       <div className="content__container">
@@ -39,7 +44,11 @@ const App = () => {
         <section className="boards__container">
           
           <section className="BoardList__container">
-            <BoardList boardData={boardData} onBoardSelect={handleBoardSelect} />
+            <BoardList 
+              boardData={boardData} 
+              onBoardSelect={handleBoardSelect} 
+              handleBoardDelete={handleBoardDelete}
+            />
           </section>
 
           <section className="newBoardForm__container">

@@ -1,0 +1,15 @@
+.board__extras, .board__actions {
+  min-height: 6rem;
+}
+
+.board__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.delete-btn{
+  background-color: #fff;
+  border: 2px solid #000;
+  padding: .5em;
+}
