@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./NewCardForm.css";
 
-const NewCardForm = ({ boardId, createNewBoard }) => {
+const NewCardForm = ({ boardId, createNewCard }) => {
   const [message, setMessage] = useState("");
   const [invalidForm, setInvalidForm] = useState(true);
 
@@ -23,7 +23,7 @@ const NewCardForm = ({ boardId, createNewBoard }) => {
       board_id: boardId,
       likes_count: 0,
     };
-    createNewBoard(data);
+    createNewCard(data);
     setMessage("");
     setInvalidForm(true);
   };
@@ -54,7 +54,7 @@ const NewCardForm = ({ boardId, createNewBoard }) => {
 
 NewCardForm.propTypes = {
   boardId: PropTypes.number.isRequired,
-  createNewBoard: PropTypes.func.isRequired,
+  createNewCard: PropTypes.func.isRequired,
 };
 
 export default NewCardForm;

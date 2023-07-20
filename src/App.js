@@ -33,7 +33,7 @@ const App = () => {
     })
     .catch((err) => {
       console.log("Error in handleNewBoardSubmit", err);
-    });
+    })
   };
   
   const handleBoardSelect = (boardId) => {
@@ -48,7 +48,6 @@ const App = () => {
     })
   };
   
-
   const handleBoardDelete = (boardId) => {
     backend
     .deleteBoard(boardId)
@@ -57,9 +56,19 @@ const App = () => {
     .catch((err) => {
       console.log("Error in handleBoardDelete", err)
     })
-    
   };
   
+  const handleNewCardSubmit = (data) => {
+    backend
+    .createNewCard(data)
+    .then((result) => {
+      setCardEntries((prev) => [...prev, result])
+    })
+    .catch((err) => {
+      console.log("Error in handleNewCardSubmit", err)
+    })
+  };
+
   const handleAddLike = (cardId) => {
     backend
     .addLike(cardId)
@@ -120,7 +129,7 @@ const App = () => {
             <section className="newCardForm__container">
               <NewCardForm
                 boardId={selectedBoardId}
-                createNewBoard={backend.createNewCard}
+                createNewCard={handleNewCardSubmit}
               />
             </section>
           </section>
