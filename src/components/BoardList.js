@@ -39,7 +39,6 @@ const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
   };
 
   const handleDeleteClick = () => {
-    console.log(selectedBoard.id);
     const delboard = window.confirm(
       `Are you sure you want to delete board "${selectedBoard.title}"?`
     );
