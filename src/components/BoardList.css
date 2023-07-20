@@ -1,0 +1,12 @@
+.board__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.boards__cointainer {
+    max-height: 9rem;
+    min-height: 9rem;
+    overflow: scroll;
+    margin-right: 2rem;
+    border: black solid 1px;
+}

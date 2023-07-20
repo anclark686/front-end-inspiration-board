@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+
 import Board from "./Board";
 import "./BoardList.css";
 
@@ -40,9 +41,6 @@ const BoardList = ({ boardData, onBoardSelect }) => {
 
   return (
     <div>
-
-      <h1>Inspiration Board</h1>
-
       <section className="board__container">
         <section className="boardList__container">
           <h2>Board List</h2>
