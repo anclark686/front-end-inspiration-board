@@ -74,15 +74,23 @@ const App = () => {
     setSelectedBoardId(boardId);
   };
 
+  const handleBoardDelete = (boardId) => {
+    backend.deleteBoard(boardId);
+    setBoardData((prev) => prev.filter((board) => board.board_id !== boardId));
+  };
+
   return (
     <div className="page__container">
       <div className="content__container">
         <h1>Inspiration Board</h1>
         <section className="boards__container">
-          <section className="boardList__container">
-            <BoardList
-              boardData={boardData}
-              onBoardSelect={handleBoardSelect}
+          
+          <section className="BoardList__container">
+            <BoardList 
+              boardData={boardData} 
+              onBoardSelect={handleBoardSelect} 
+              handleBoardDelete={handleBoardDelete}
+
             />
           </section>
 

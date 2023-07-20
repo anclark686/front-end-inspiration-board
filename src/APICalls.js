@@ -51,6 +51,17 @@ export const createNewBoard = (data) => {
 };
 
 /**
+ * deleteBoard takes one argument, an int representing a board id.
+ * Does not return anything.
+ * @param {int} board_id must be an integer
+ */
+export const deleteBoard = (board_id) => {
+  axios
+    // .delete(`${kBoardBaseUrl}/${board_id}`)
+    .delete(`${kBoardBaseUrl}/boards/${board_id}`)
+}
+
+/**
  * createNewCard takes one argument, an object containing data needed to create a new Card object .
  * Returns the newly created card
  * @param {Object} data
