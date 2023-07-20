@@ -57,8 +57,7 @@ export const createNewBoard = (data) => {
  */
 export const deleteBoard = (board_id) => {
   axios
-    // .delete(`${kBoardBaseUrl}/${board_id}`)
-    .delete(`${kBoardBaseUrl}/boards/${board_id}`)
+    .delete(`${kBoardBaseUrl}/${board_id}`)
 }
 
 /**
