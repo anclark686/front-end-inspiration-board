@@ -1,3 +1,4 @@
-.board {
+.board:hover {
   cursor: pointer;
+  color: rgb(0, 213, 255)
 }

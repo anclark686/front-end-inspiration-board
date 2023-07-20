@@ -41,7 +41,7 @@ const NewBoardForm = ({ handleNewBoardSubmit }) => {
       <div className="new-board-form__container">
         <h2>Create a New Board</h2>
         <form className="new-board-form__form" onSubmit={handleFormSubmit}>
-          <label htmlFor="title">Title: </label>
+          <label htmlFor="title">Title </label>
           <input
             type="text"
             className={invalidForm.title ? "invalid-form-input" : "form-input"}
@@ -49,7 +49,7 @@ const NewBoardForm = ({ handleNewBoardSubmit }) => {
             value={formData.title}
             onChange={handleFormChange}
           />
-          <label htmlFor="owner">Owner: </label>
+          <label htmlFor="owner">Owner's Name </label>
           <input
             type="text"
             className={invalidForm.owner ? "invalid-form-input" : "form-input"}
