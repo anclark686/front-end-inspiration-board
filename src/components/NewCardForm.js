@@ -7,25 +7,28 @@ const NewCardForm = ({ boardId, createNewBoard }) => {
   const [message, setMessage] = useState("");
   const [invalidForm, setInvalidForm] = useState(true);
 
-  const generateMessage = (e) => {
-    setMessage(e.target.value)
-    if (e.target.value.length > 0 && e.target.value.length <= 40) {
+  const generateMessage = (event) => {
+    setMessage(event.target.value)
+    if (event.target.value.length > 0 && event.target.value.length <= 40) {
       setInvalidForm(false);
     } else {
       setInvalidForm(true);
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(message);
+    console.log(boardId)
     const data = {
       message: message,
       board_id: boardId,
       likes_count: 0,
     };
+    console.log(data);
     createNewBoard(data);
     setMessage("");
+    setInvalidForm(true);
   }
 
   return (

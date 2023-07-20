@@ -64,7 +64,7 @@ const App = () => {
             <section className="newCardForm__container">
               <NewCardForm
                 boardId={selectedBoardId}
-                createNewBoard={backend.createNewBoard}
+                createNewBoard={backend.createNewCard}
               />
             </section>
           </section>
