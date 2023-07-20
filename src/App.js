@@ -48,7 +48,6 @@ const App = () => {
     })
   };
   
-  console.log(cardEntries);
 
   const handleBoardDelete = (boardId) => {
     backend
@@ -67,7 +66,7 @@ const App = () => {
     .then((result) => {
       setCardEntries(cardEntries.map((card) => {
         if (card.card_id === cardId) {
-          return result;
+          return {...card, likes_count:result.card_like_count};
         } else {
           return card;
         };

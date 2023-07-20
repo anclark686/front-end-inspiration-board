@@ -3,46 +3,28 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 
-const Card = ({props, onUpdate, onDelete}) => {
-  
-  const increaseLikeButtonClick = () => {
-    const updateLike ={
-      card_id : props.card_id, 
-      message : props.message,
-      likes_count : props.likes_count + 1,
-      board_id : props.board_id,
-    }
-    onUpdate(updateLike); 
-
+const Card = ({card, onAddLike, onDelete}) => {
+  const increaseLikeButtonClick = (event) => {
+    onAddLike(card.card_id); 
   }
 
-  const deleteCardButtonClick = () => {
-    const deleteCard ={
-      card_id : props.card_id, 
-      message : props.message,
-      likes_count : props.likes_count,
-      board_id : props.board_id,
-    }
-    onDelete(deleteCard); 
-
+  const deleteCardButtonClick = (event) => {
+    onDelete(card.card_id); 
   }  
 
   return (
     <div className="card">
-      <p className ="card_message">{props.message}</p>
+      <p className ="card_message">{card.message}</p>
       <section>
-        <p>{props.likes_count}</p>
-        <button onClick ={increaseLikeButtonClick} className="increase-like">+1</button>
-        <button onClick ={deleteCardButtonClick} className="delete-card">delete</button>
+        <p>{card.likes_count}</p>
+        <button onClick={increaseLikeButtonClick} className="increase-like">+1</button>
+        <button onClick={deleteCardButtonClick} className="delete-card">delete</button>
       </section>
     </div>
   );
 }
 
 Card.propTypes = {
-  card_id: PropTypes.number.isRequired,
-  message: PropTypes.string.isRequired,
-  likes_count: PropTypes.number.isRequired,
-  board_id: PropTypes.number.isRequired,
+  card: PropTypes.object.isRequired
 }
 export default Card;

@@ -56,7 +56,7 @@ export const createNewBoard = (data) => {
  * @param {int} board_id must be an integer
  */
 export const deleteBoard = (board_id) => {
-  axios
+  return axios
     .delete(`${kBoardBaseUrl}/${board_id}`)
 }
 
@@ -104,7 +104,7 @@ const kCardBaseUrl = "https://inspiration-board-backend-t6x0.onrender.com/cards"
  * @param {int} card_id must be an integer
  */
 export const deleteCard = (card_id) => {
-  axios
+  return axios
     .delete(`${kCardBaseUrl}/${card_id}`)
 }
 
