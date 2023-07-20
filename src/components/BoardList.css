@@ -21,8 +21,13 @@
   justify-content: space-between;
 }
 
-.delete-btn{
+.delete-btn {
   background-color: #fff;
   border: 2px solid #000;
   padding: .5em;
+}
+
+.delete-btn:hover {
+  background-color: rgb(0, 213, 255);
+  cursor: pointer;
 }
