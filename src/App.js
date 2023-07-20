@@ -33,20 +33,26 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div className="page__container">
+      <div className="content__container">
+        <h1>Inspiration Board</h1>
+        <section className="boards__container">
+          
+          <section className="BoardList__container">
+            <BoardList boardData={boardData} onBoardSelect={handleBoardSelect} />
+          </section>
 
-      <section className="newBoardForm__container">
-        <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
-      </section>
+          <section className="newBoardForm__container">
+            <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
+          </section>
+        </section>
+        <section className="cards_container">
+          <section className="NewCardForm__container">
+            <NewCardForm boardId={selectedBoardId} createNewBoard={backend.createNewBoard} />
+          </section>
+        </section>
+      </div>
 
-      <section className="BoardList__container">
-        <BoardList boardData={boardData} onBoardSelect={handleBoardSelect} />
-      </section>
-
-      <section className="NewCardForm__container">
-        <NewCardForm boardId={selectedBoardId} createNewBoard={backend.createNewBoard} />
-      </section>
     </div>
   );
 };
