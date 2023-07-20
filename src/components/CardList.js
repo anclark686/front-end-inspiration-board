@@ -4,28 +4,31 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 
 
-const CardList = ({boardId, cardEntries, onUpdate, onDelete}) => {
-  const cards = cardEntries
-                .filter((card) => card.board_id === boardId)
-                .sort((a, b) => a.card_id - b.card_id);
-
+const CardList = ({ cardEntries, onAddLike, onDelete }) => {
   return (
     <div className="card-items__container">
-      {cards.map(card => {
-        return <Card props={card} onUpdate={onUpdate} onDelete={onDelete}></Card>;
-      })}
+      {cardEntries.map((card) => (
+        <Card
+          key={card.card_id}
+          card={card}
+          onAddLike={onAddLike}
+          onDelete={onDelete}
+          />
+      ))}
     </div>
   );
 }
 
 CardList.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.shape({
+  cardEntries: PropTypes.arrayOf(PropTypes.shape({
     card_id: PropTypes.number.isRequired,
     message: PropTypes.string.isRequired,
     likes_count: PropTypes.number.isRequired,
     board_id: PropTypes.number.isRequired,
   })),
-  onUpdateCard : PropTypes.func.isRequired
+  onAddLike: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
 
-}
+
 export default CardList;
