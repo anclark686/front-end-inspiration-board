@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './Board.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./Board.css";
 
 const Board = (props) => {
   return (
     <li
+      className="board"
       onClick={() => props.handleBoardClick(props.title, props.owner, props.id)}
     >
       {props.title}

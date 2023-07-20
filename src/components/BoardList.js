@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+
 import Board from "./Board";
 import "./BoardList.css";
 
@@ -10,24 +11,13 @@ const BoardListProps = ({ boardData, handleBoardClick }) => {
         <Board
           title={board.title}
           owner={board.owner}
-          key={board.id}
-          id={board.id}
+          key={board.board_id}
+          id={board.board_id}
           handleBoardClick={handleBoardClick}
         />
       ))}
     </ul>
   );
-};
-
-BoardListProps.propTypes = {
-  boardData: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      owner: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-    })
-  ),
-  handleBoardClick: PropTypes.func.isRequired,
 };
 
 const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
@@ -50,12 +40,10 @@ const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
 
   return (
     <div>
-      <h1>Inspiration Board</h1>
-
-      <section className="board__container">
+      <section className="mainBoard__container">
         <section className="boardList__container">
           <h2>Board List</h2>
-          <section className="boards__cointainer">
+          <section className="board__container">
             <BoardListProps
               boardData={boardData}
               handleBoardClick={handleBoardClick}
@@ -92,7 +80,7 @@ BoardList.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       owner: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
+      board_id: PropTypes.number.isRequired,
     })
   ),
   onBoardSelect: PropTypes.func.isRequired,

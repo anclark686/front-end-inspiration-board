@@ -1,3 +1,16 @@
+.mainBoard__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.board__container {
+  max-height: 9rem;
+  min-height: 9rem;
+  overflow: scroll;
+  margin-right: 2rem;
+  border: 2px solid #000;
+}
+
 .board__extras, .board__actions {
   min-height: 6rem;
 }

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const kBoardBaseUrl = 'https://inspiration-board-backend-t6x0.onrender.com/boards';
+const kBoardBaseUrl = "https://inspiration-board-backend-t6x0.onrender.com/boards";
 
 // API CALL FUNCTIONS FOR board_routes
 
@@ -10,11 +10,11 @@ const kBoardBaseUrl = 'https://inspiration-board-backend-t6x0.onrender.com/board
  * @returns {Promise<Board[]>} Promise object represents an array of Board objects
  */
 export const getAllBoards = () => {
-    return axios
+  return axios
     .get(`${kBoardBaseUrl}`)
     .then(response => {
-        const allBoards = response.data;
-        return allBoards;
+      const allBoards = response.data;
+      return allBoards;
     });
 };
 
@@ -25,11 +25,11 @@ export const getAllBoards = () => {
  * @returns {Promise<Board>} Promise object represents a Board object
  */
 export const getSelectedBoard = (board_id) => {
-    return axios
+  return axios
     .get(`${kBoardBaseUrl}/${board_id}`)
     .then(response => {
-        const selectedBoard = response.data;
-        return selectedBoard;
+      const selectedBoard = response.data;
+      return selectedBoard;
     });
 };
 
@@ -42,11 +42,11 @@ export const getSelectedBoard = (board_id) => {
  * @returns {Promise<Board>} Promise object represents a Board object
  */
 export const createNewBoard = (data) => {
-    return axios
+  return axios
     .post(kBoardBaseUrl, data)
     .then(response => {
-        const newBoard = response.data;
-        return newBoard;
+      const newBoard = response.data;
+      return newBoard;
     });
 };
 
@@ -71,11 +71,11 @@ export const deleteBoard = (board_id) => {
  * @returns {Promise<Card>} Promise object represents a Card object
  */
 export const createNewCard = (data) => {
-    return axios
+  return axios
     .post(`${kBoardBaseUrl}/${data.board_id}/cards`, data)
     .then(response => {
-        const newCard = response.data;
-        return newCard;
+      const newCard = response.data;
+      return newCard;
     });
 };
 
@@ -86,18 +86,18 @@ export const createNewCard = (data) => {
  * @returns {Promise<Card[]>} Promise object represents an array of Card objects
  */
 export const getBoardCards = (board_id) => {
-    return axios
+  return axios
     .get(`${kBoardBaseUrl}/${board_id}/cards`)
     .then(response => {
-        const allCards = response.data;
-        return allCards;
+      const allCards = response.data;
+      return allCards;
     });
 };
 
 
 // API CALL FUNCTIONS FOR card_routes
 
-const kCardBaseUrl = 'https://inspiration-board-backend-t6x0.onrender.com/cards';
+const kCardBaseUrl = "https://inspiration-board-backend-t6x0.onrender.com/cards";
 
 /**
  * deleteCard takes one argument, an int representing a card id.
@@ -105,9 +105,9 @@ const kCardBaseUrl = 'https://inspiration-board-backend-t6x0.onrender.com/cards'
  * @param {int} card_id must be an integer
  */
 export const deleteCard = (card_id) => {
-    axios
+  axios
     .delete(`${kCardBaseUrl}/${card_id}`)
-    }
+}
 
 /**
  * addLike takes one argument, an int representing a card id.
@@ -116,10 +116,10 @@ export const deleteCard = (card_id) => {
  * @returns {Promise<Card>} Promise object represents a Card object
  */
 export const addLike = (card_id) => {
-    return axios
+  return axios
     .patch(`${kCardBaseUrl}/${card_id}/add_like`)
     .then(response => {
-        const updatedCard = response.data;
-        return updatedCard;
+      const updatedCard = response.data;
+      return updatedCard;
     })
 }
