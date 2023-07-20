@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import Board from "./Board";
 import "./BoardList.css";
 
-const BoardListProps = (props) => {
+const BoardListProps = ({ boardData, handleBoardClick }) => {
   return (
     <ul>
-      {props.boardData.map((board) => (
+      {boardData.map((board) => (
         <Board
           title={board.title}
           owner={board.owner}
           key={board.id}
           id={board.id}
-          handleBoardClick={props.handleBoardClick}
+          handleBoardClick={handleBoardClick}
         />
       ))}
     </ul>
@@ -30,35 +30,33 @@ BoardListProps.propTypes = {
   handleBoardClick: PropTypes.func.isRequired,
 };
 
-const BoardList = () => {
-  const [allBoardData, setAllBoardData] = useState([]);
+const BoardList = ({ boardData, onBoardSelect }) => {
   const [selectedBoard, setSelectedBoard] = useState(null);
-
-  // Simulation to test
-  const sampleBoardData = [
-    { id: 1, title: "Portfolio examples", owner: "Barbara" },
-    { id: 2, title: "Leetcode for beginners", owner: "Elizabeth" },
-    { id: 3, title: "Rock your interview", owner: "Josh" },
-  ];
 
   const handleBoardClick = (title, owner, id) => {
     setSelectedBoard({ title, owner, id });
+    onBoardSelect(id);
   };
 
   return (
     <div>
+
+      <h1>Inspiration Board</h1>
+
       <section className="board__container">
         <section className="boardList__container">
           <h2>Board List</h2>
           <section className="boards__cointainer">
             <BoardListProps
-              boardData={sampleBoardData} // Replace with data from inputs
+              boardData={boardData}
               handleBoardClick={handleBoardClick}
             />
           </section>
         </section>
         <section className="selectBoard__container">
+
           <h2> Selected Board</h2>
+
           <section className="select__board">
             {!selectedBoard ? (
               <span></span>
@@ -72,6 +70,17 @@ const BoardList = () => {
       </section>
     </div>
   );
+};
+
+BoardList.propTypes = {
+  boardData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      owner: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ),
+  onBoardSelect: PropTypes.func.isRequired,
 };
 
 export default BoardList;

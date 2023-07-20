@@ -1,28 +1,37 @@
-import React, { useState } from "react";
-import './App.css';
-
-// To use API call functions, use apiCalls as the module name, e.g., backend.getAllBoards() will return a promise of an array of Board objects. 
-import * as backend from './APICalls.js'
-
+import React, { useState, useEffect } from "react";
+import * as backend from './APICalls.js';
 import BoardList from "./components/BoardList";
 import NewCardForm from './components/NewCardForm';
 import NewBoardForm from './components/NewBoardForm';
 
-
 const App = () => {
   const [boardData, setBoardData] = useState([]);
+  const [selectedBoardId, setSelectedBoardId] = useState(null);
+
+  useEffect(() => {
+    backend.getAllBoards()
+      .then(boards => {
+        setBoardData(boards);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   const handleNewBoardSubmit = (data) => {
     backend.createNewBoard(data)
-    .then(result => {
-      // update boardData with newly created board
-      setBoardData(prev => [result, ...prev]);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(result => {
+        setBoardData(prevBoardData => [result, ...prevBoardData]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
-  
+
+  const handleBoardSelect = (boardId) => {
+    setSelectedBoardId(boardId);
+  };
+
   return (
     <div className="page__container">
       <div className="content__container">
@@ -30,21 +39,22 @@ const App = () => {
         <section className="boards__container">
           
           <section className="BoardList__container">
-            <BoardList />
+            <BoardList boardData={boardData} onBoardSelect={handleBoardSelect} />
           </section>
 
-          <section>
-            <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit}/>
+          <section className="newBoardForm__container">
+            <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
           </section>
-
+        </section>
+        <section className="cards_container">
           <section className="NewCardForm__container">
-            <NewCardForm boardId={1} createNewBoard={backend.createNewBoard}/>
-
+            <NewCardForm boardId={selectedBoardId} createNewBoard={backend.createNewBoard} />
           </section>
         </section>
       </div>
+
     </div>
   );
-}
+};
 
 export default App;
