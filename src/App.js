@@ -12,25 +12,7 @@ import "./App.css";
 const App = () => {
   const [boardData, setBoardData] = useState([]);
   const [selectedBoardId, setSelectedBoardId] = useState(null);
-
-  // This part is used for test
-  //
-  // const card1 = {
-  //   card_id: 1,
-  //   message: "I am 1",
-  //   likes_count: 0,
-  //   board_id: 1,
-  // }
-
-  // const card2 = {
-  //   card_id: 2,
-  //   message: "I am 2",
-  //   likes_count: 0,
-  //   board_id: 1,
-  // }
-
-  const [cardEntries, setCardEntries] = useState([]); //useState([card2, card1]); // Uncomment for test usage
-
+  const [cardEntries, setCardEntries] = useState([]);
 
   useEffect(() => {
     backend
@@ -42,41 +24,62 @@ const App = () => {
         console.log(err);
       });
   }, []);
-
-  const updateLikeData = updatedCard =>{
-    const cards= cardEntries.map(card => {
-      if (card.card_id === updatedCard.card_id) {
-        return updatedCard;
-      }else {
-        return card;
-      }
-    }); 
-    setCardEntries(cards);
-  };
-
-  const deleteCardData = deleteCard =>{
-    const cards= cardEntries.filter((card) => card.card_id !== deleteCard.card_id);
-    setCardEntries(cards);
-  };
-
+  
   const handleNewBoardSubmit = (data) => {
     backend
-      .createNewBoard(data)
-      .then((result) => {
-        setBoardData((prevBoardData) => [result, ...prevBoardData]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .createNewBoard(data)
+    .then((result) => {
+      setBoardData((prevBoardData) => [result, ...prevBoardData]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
-
+  
   const handleBoardSelect = (boardId) => {
     setSelectedBoardId(boardId);
+    backend
+    .getBoardCards(boardId)
+    .then((result) => {
+      setCardEntries(result);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   };
+  
+  console.log(cardEntries);
 
   const handleBoardDelete = (boardId) => {
     backend.deleteBoard(boardId);
     setBoardData((prev) => prev.filter((board) => board.board_id !== boardId));
+  };
+  
+  const updateLikeData = (cardId) => {
+    backend
+    .addLike(cardId)
+    .then((result) => {
+      setCardEntries(cardEntries.map((card) => {
+        if (card.card_id === cardId) {
+          return result;
+        } else {
+          return card;
+        };
+      }))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
+
+  const deleteCardData = (cardId) => {
+    backend
+    .deleteCard(cardId)
+    .then(setCardEntries((prev) => prev.filter((card) => card.card_id !== cardId))
+    )
+    .catch((err) => {
+      console.log(err)
+    });
   };
 
   return (
