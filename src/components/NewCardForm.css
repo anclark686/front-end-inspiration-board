@@ -1,9 +1,9 @@
-.new-card-form {
-    display: flex;
-    flex-direction: column;
+.new-card__form {
+  display: flex;
+  flex-direction: column;
 }
 
 .invalid-form-input {
-    border: red solid 1px;
-    box-shadow: 0 0 7px red;
+  border: red solid 1px;
+  box-shadow: 0 0 7px red;
 }
