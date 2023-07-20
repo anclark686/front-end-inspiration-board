@@ -45,7 +45,7 @@ const NewCardForm = ({ boardId, createNewBoard }) => {
         {!invalidForm ? (
           <input type="Submit" className="submit-btn" />
         ) : (
-          <input type="Submit" className="submit-btn" disabled />
+          <input type="Submit" className="submit-btn-invalid" disabled />
         )}
       </form>
     </section>
