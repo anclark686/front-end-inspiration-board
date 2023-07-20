@@ -51,8 +51,14 @@ const App = () => {
   console.log(cardEntries);
 
   const handleBoardDelete = (boardId) => {
-    backend.deleteBoard(boardId);
-    setBoardData((prev) => prev.filter((board) => board.board_id !== boardId));
+    backend
+    .deleteBoard(boardId)
+    .then(setBoardData((prev) => prev.filter((board) => board.board_id !== boardId))
+    )
+    .catch((err) => {
+      console.log(err)
+    })
+    
   };
   
   const updateLikeData = (cardId) => {
