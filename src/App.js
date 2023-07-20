@@ -61,7 +61,7 @@ const App = () => {
     
   };
   
-  const updateLikeData = (cardId) => {
+  const handleAddLike = (cardId) => {
     backend
     .addLike(cardId)
     .then((result) => {
@@ -78,7 +78,7 @@ const App = () => {
     })
   };
 
-  const deleteCardData = (cardId) => {
+  const handleDeleteCard = (cardId) => {
     backend
     .deleteCard(cardId)
     .then(setCardEntries((prev) => prev.filter((card) => card.card_id !== cardId))
@@ -113,8 +113,8 @@ const App = () => {
               <CardList
                 boardId = {selectedBoardId}
                 cardEntries = {cardEntries}
-                onUpdate = {updateLikeData}
-                onDelete = {deleteCardData}
+                onAddLike = {handleAddLike}
+                onDelete = {handleDeleteCard}
               />
             </section>
 
