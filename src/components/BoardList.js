@@ -25,7 +25,7 @@ const BoardList = ({ boardData, onBoardSelect, handleBoardDelete }) => {
 
   const handleBoardClick = (title, owner, id) => {
     setSelectedBoard({ title, owner, id });
-    onBoardSelect(id);
+    onBoardSelect({ title, owner, id });
   };
 
   const handleDeleteClick = () => {
