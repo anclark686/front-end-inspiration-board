@@ -100,7 +100,7 @@ const App = () => {
   return (
     <div className="page__container">
       <div className="content__container">
-        <h1>Our Site</h1>
+        <h1>Inspiration Board</h1>
         <section className="boards__container">
           
           <section className="BoardList__container">
