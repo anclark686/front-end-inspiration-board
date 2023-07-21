@@ -1,8 +1,9 @@
-import './App.css';
-// To use API call functions, use apiCalls as the module name, e.g., backend.getAllBoards() will return a promise of an array of Board objects. 
-import * as backend from './APICalls.js';
-import CardList from './components/CardList';
 import React, { useState, useEffect } from "react";
+
+// To use API call functions, use apiCalls as the module name, e.g., backend.getAllBoards() will return a promise of an array of Board objects.
+import * as backend from "./APICalls.js";
+
+import CardList from "./components/CardList";
 import BoardList from "./components/BoardList";
 import NewCardForm from "./components/NewCardForm";
 import NewBoardForm from "./components/NewBoardForm";
