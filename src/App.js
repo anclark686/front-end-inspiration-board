@@ -12,7 +12,7 @@ import "./App.css";
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
-  const [selectedBoardId, setSelectedBoardId] = useState(null);
+  const [selectedBoard, setSelectedBoard] = useState(null);
   const [cardEntries, setCardEntries] = useState([]);
 
   useEffect(() => {
@@ -37,10 +37,10 @@ const App = () => {
     })
   };
   
-  const handleBoardSelect = (boardId) => {
-    setSelectedBoardId(boardId);
+  const handleBoardSelect = (board) => {
+    setSelectedBoard(board);
     backend
-    .getBoardCards(boardId)
+    .getBoardCards(board.id)
     .then((result) => {
       setCardEntries(result);
     })
@@ -100,7 +100,7 @@ const App = () => {
   return (
     <div className="page__container">
       <div className="content__container">
-        <h1>Inspiration Board</h1>
+        <h1>Our Site</h1>
         <section className="boards__container">
           
           <section className="BoardList__container">
@@ -116,11 +116,11 @@ const App = () => {
             <NewBoardForm handleNewBoardSubmit={handleNewBoardSubmit} />
           </section>
         </section>
-        {selectedBoardId ?
+        {selectedBoard ?
           <section className="cards__container">
             <section className="cardList__container">
               <CardList
-                boardId = {selectedBoardId}
+                board = {selectedBoard}
                 cardEntries = {cardEntries}
                 onAddLike = {handleAddLike}
                 onDelete = {handleDeleteCard}
@@ -129,7 +129,7 @@ const App = () => {
 
             <section className="newCardForm__container">
               <NewCardForm
-                boardId={selectedBoardId}
+                boardId={selectedBoard.id}
                 createNewCard={handleNewCardSubmit}
               />
             </section>

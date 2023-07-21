@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "./Card";
 import "./CardList.css";
 
-const CardList = ({ cardEntries, onAddLike, onDelete }) => {
+const CardList = ({ board, cardEntries, onAddLike, onDelete }) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const CardList = ({ cardEntries, onAddLike, onDelete }) => {
 
   return (
     <section className="card-list__container">
+      <h2>Cards For { board.title }</h2>
       <section className="sort-buttons__container">
         <p>Sort By:</p>
         <button className="sort-btn" onClick={() => sortCards("id")}>
@@ -61,6 +62,7 @@ CardList.propTypes = {
     likes_count: PropTypes.number.isRequired,
     board_id: PropTypes.number.isRequired,
   })),
+  board: PropTypes.object.isRequired,
   onAddLike: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired
 };
