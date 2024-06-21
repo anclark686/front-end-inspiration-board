@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const kBoardBaseUrl = "https://inspiration-board-backend-t6x0.onrender.com/boards";
+const kBoardBaseUrl = "https://back-end-inspiration-board-ueqo.onrender.com/boards";
 
 // API CALL FUNCTIONS FOR board_routes
 
